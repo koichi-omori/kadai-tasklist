@@ -2,14 +2,36 @@
   <div class="row">
     <aside class="col-sm-4">
       <%= form_with(model: @task, local: true) do |f| %>
-        <div class="form-group">
-          <%= f.text_area :content, class: 'form-control', rows: 5 %>
-        </div>
-        <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+      <h1>タスク新規作成</h1>
+      <div class="form-group">
+        <%= f.label :status, 'ステータス' %>
+        <%= f.text_field :status, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :content, 'タスク' %>
+        <%= f.text_field :content, class: 'form-control' %>
+      </div>
+        <%= f.submit '投稿', class: 'btn btn-primary btn-block' %>
       <% end %>
     </aside>
     <div class="col-sm-8">
-      <%= render 'tasks/tasks', tasks: @tasks %>
+    <h1>タスク一覧</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>ステータス</th>
+            <th>タスク</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render 'tasks/tasks', tasks: @tasks %>
+        </tbody>
+      </table>
+    <div class="paginate">
+      <%= paginate @tasks %>
+    </div>
     </div>
   </div>
 <% else %>
