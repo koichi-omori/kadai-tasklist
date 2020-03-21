@@ -32,10 +32,10 @@ class TasksController < ApplicationController
     flash[:success] = 'タスクを削除しました。'
     redirect_back(fallback_location: root_path)
   end
-  
+
   def edit
   end
-  
+
   def update
     if @task.update(task_params)
       flash[:success] = 'タスクが編集されました'
